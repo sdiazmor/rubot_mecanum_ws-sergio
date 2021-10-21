@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="rubot_mecanum">
+  <link name="base_footprint"/>
+  <joint name="base_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.027358779894703 -0.0197603692535836 -0.100882644576948"
+        rpy="0 0 0" />
+      <mass
+        value="3.18539354368186" />
+      <inertia
+        ixx="0.0106842818448098"
+        ixy="-5.71916645986104E-18"
+        ixz="-7.33657587264312E-18"
+        iyy="0.0166285557560687"
+        iyz="-1.02898300437928E-07"
+        izz="0.0271752644394761" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="yellow"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="R1_Link">
+    <inertial>
+      <origin
+        xyz="-1.138E-15 -1.3878E-16 0.026605"
+        rpy="0 0 0" />
+      <mass
+        value="0.10143" />
+      <inertia
+        ixx="1.7366E-05"
+        ixy="9.2936E-18"
+        ixz="-2.8624E-18"
+        iyy="1.7366E-05"
+        iyz="1.193E-17"
+        izz="2.1022E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/R1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/R1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_R1"
+    type="continuous">
+    <origin
+      xyz="0.19024 -0.17854 -0.15093"
+      rpy="-1.5708 0.58045 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="R1_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="L1_Link">
+    <inertial>
+      <origin
+        xyz="-2.91433543964104E-15 -3.02535774210355E-15 0.0266049351953702"
+        rpy="0 0 0" />
+      <mass
+        value="0.101433683220293" />
+      <inertia
+        ixx="1.73656014589032E-05"
+        ixy="1.22041565831584E-18"
+        ixz="3.98859767479316E-18"
+        iyy="1.73656014589116E-05"
+        iyz="2.51536033083007E-18"
+        izz="2.10216674226564E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/L1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/L1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_L1"
+    type="continuous">
+    <origin
+      xyz="0.19024 0.13902 -0.15093"
+      rpy="-1.5708 1.5286 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L1_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="R2_Link">
+    <inertial>
+      <origin
+        xyz="2.22044604925031E-15 -6.93889390390723E-16 0.0266049351956469"
+        rpy="0 0 0" />
+      <mass
+        value="0.101433683215874" />
+      <inertia
+        ixx="1.73656014588276E-05"
+        ixy="-3.60243112467254E-18"
+        ixz="-9.16323392260164E-18"
+        iyy="1.73656014588365E-05"
+        iyz="2.27555013761854E-17"
+        izz="2.10216674226847E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/R2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/R2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_R2"
+    type="continuous">
+    <origin
+      xyz="-0.13336 -0.17854 -0.15093"
+      rpy="-1.5708 0.79452 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="R2_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="L2_Link">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 1.11022302462516E-16 0.0266049351954913"
+        rpy="0 0 0" />
+      <mass
+        value="0.101433683216509" />
+      <inertia
+        ixx="1.73656014587943E-05"
+        ixy="3.81842452622239E-18"
+        ixz="-7.11348460007026E-18"
+        iyy="1.73656014587947E-05"
+        iyz="-8.24630865852679E-18"
+        izz="2.10216674226438E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/L2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/L2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_L2"
+    type="continuous">
+    <origin
+      xyz="-0.13336 0.13902 -0.15093"
+      rpy="1.5708 -1.2194 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="L2_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="SuportCentre1_Link">
+    <inertial>
+      <origin
+        xyz="0.0185 0.0481538712864173 -0.0980000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.0536307879572357" />
+      <inertia
+        ixx="0.000239710306368585"
+        ixy="5.09851701757735E-20"
+        ixz="1.05872033629026E-11"
+        iyy="0.000240795903477881"
+        iyz="-3.79018546536177E-20"
+        izz="1.14661974393378E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportCentre1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportCentre1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportCentre1"
+    type="fixed">
+    <origin
+      xyz="0.20874 0.07824 -0.16393"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportCentre1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="SuportCentre2_Link">
+    <inertial>
+      <origin
+        xyz="0.0185000000000001 0.048153871286417 -0.0979999999999997"
+        rpy="0 0 0" />
+      <mass
+        value="0.0536307879572362" />
+      <inertia
+        ixx="0.000239710306368588"
+        ixy="8.43076589416846E-20"
+        ixz="1.05872033273468E-11"
+        iyy="0.000240795903477884"
+        iyz="3.99292166661122E-19"
+        izz="1.14661974393382E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportCentre2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportCentre2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportCentre"
+    type="fixed">
+    <origin
+      xyz="-0.11486 0.07824 -0.16393"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportCentre2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Coberta_Link">
+    <inertial>
+      <origin
+        xyz="-0.2191568641921 -0.0423023461352811 -0.200000853356191"
+        rpy="0 0 0" />
+      <mass
+        value="6.86550905632035" />
+      <inertia
+        ixx="0.110082208729017"
+        ixy="-0.00168399155962838"
+        ixz="6.23787142038268E-08"
+        iyy="0.247996405331257"
+        iyz="1.67953107757833E-07"
+        izz="0.143649899899849" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/Coberta_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.498039215686275 0.498039215686275 0.498039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/Coberta_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_coberta"
+    type="prismatic">
+    <origin
+      xyz="-0.22156 0.18024 -0.0016623"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Coberta_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="SuportR1_Link">
+    <inertial>
+      <origin
+        xyz="0.0185 -0.00908262410146318 -0.0322712123132596"
+        rpy="0 0 0" />
+      <mass
+        value="1.88293478703683E-14" />
+      <inertia
+        ixx="7.80328610267101E-18"
+        ixy="-8.01367003990634E-33"
+        ixz="-2.32382731560208E-33"
+        iyy="5.41454279349707E-18"
+        iyz="-2.19454525578505E-18"
+        izz="6.51550874913411E-18" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportR1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportR1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportR1"
+    type="fixed">
+    <origin
+      xyz="0.20874 -0.13251 -0.11493"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportR1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="SuportL1_Link">
+    <inertial>
+      <origin
+        xyz="0.0185 -0.00908262410146315 -0.0322712123132596"
+        rpy="0 0 0" />
+      <mass
+        value="1.88293478703682E-14" />
+      <inertia
+        ixx="7.803286102671E-18"
+        ixy="3.0959833975071E-33"
+        ixz="2.02097825736474E-33"
+        iyy="5.41454279349707E-18"
+        iyz="-2.19454525578505E-18"
+        izz="6.51550874913411E-18" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportL1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportL1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportL1"
+    type="fixed">
+    <origin
+      xyz="0.17174 0.09299 -0.11493"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportL1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="SuportR2_Link">
+    <inertial>
+      <origin
+        xyz="0.0185 -0.00908262410146317 -0.0322712123132596"
+        rpy="0 0 0" />
+      <mass
+        value="1.88293478703683E-14" />
+      <inertia
+        ixx="7.80328610267102E-18"
+        ixy="-1.76860129033217E-33"
+        ixz="2.50608713016688E-35"
+        iyy="5.41454279349707E-18"
+        iyz="-2.19454525578505E-18"
+        izz="6.51550874913413E-18" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportR2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportR2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportR2"
+    type="fixed">
+    <origin
+      xyz="-0.11486 -0.13251 -0.11493"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportR2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="SuportL2_Link">
+    <inertial>
+      <origin
+        xyz="0.0185 -0.00908262410146314 -0.0322712123132596"
+        rpy="0 0 0" />
+      <mass
+        value="1.88293478703682E-14" />
+      <inertia
+        ixx="7.80328610267099E-18"
+        ixy="4.46479051046065E-33"
+        ixz="7.28647099128006E-33"
+        iyy="5.41454279349706E-18"
+        iyz="-2.19454525578504E-18"
+        izz="6.5155087491341E-18" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportL2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportL2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_suportL2"
+    type="fixed">
+    <origin
+      xyz="-0.15186 0.09299 -0.11493"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportL2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="MR1_Link">
+    <inertial>
+      <origin
+        xyz="0.000125294788847569 0.000150084868448225 -0.0323957923521485"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568898396886143" />
+      <inertia
+        ixx="2.16430504132729E-05"
+        ixy="7.24126643727964E-10"
+        ixz="-1.5609549027946E-07"
+        iyy="2.17113865023018E-05"
+        iyz="1.74927784904528E-07"
+        izz="8.51339721047066E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/MR1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/MR1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_MR1"
+    type="fixed">
+    <origin
+      xyz="0.19024 -0.11131 -0.14393"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="MR1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ML1_Link">
+    <inertial>
+      <origin
+        xyz="0.000125294788847624 0.00015008486844828 -0.0323957923521486"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568898396886143" />
+      <inertia
+        ixx="2.16430504132729E-05"
+        ixy="7.24126643729239E-10"
+        ixz="-1.56095490279456E-07"
+        iyy="2.17113865023019E-05"
+        iyz="1.74927784904539E-07"
+        izz="8.51339721047067E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/ML1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/ML1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_ML1"
+    type="fixed">
+    <origin
+      xyz="0.19024 0.07179 -0.14393"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="ML1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="MR2_Link">
+    <inertial>
+      <origin
+        xyz="0.000125294788847541 0.00015008486844828 -0.0323957923521486"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568898396886143" />
+      <inertia
+        ixx="2.16430504132729E-05"
+        ixy="7.24126643728097E-10"
+        ixz="-1.56095490279478E-07"
+        iyy="2.17113865023018E-05"
+        iyz="1.74927784904533E-07"
+        izz="8.51339721047066E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/MR2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/MR2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_MR2"
+    type="fixed">
+    <origin
+      xyz="-0.13336 -0.11131 -0.14393"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="MR2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ML2_Link">
+    <inertial>
+      <origin
+        xyz="0.000125294788847624 0.000150084868448308 -0.0323957923521486"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568898396886143" />
+      <inertia
+        ixx="2.16430504132729E-05"
+        ixy="7.24126643728438E-10"
+        ixz="-1.56095490279455E-07"
+        iyy="2.17113865023018E-05"
+        iyz="1.74927784904533E-07"
+        izz="8.51339721047066E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/ML2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/ML2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_ML2"
+    type="fixed">
+    <origin
+      xyz="-0.13336 0.07179 -0.14393"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="ML2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="SuportLidar_Link">
+    <inertial>
+      <origin
+        xyz="-2.08492539739702E-07 0.0609835303237017 -0.000258664711631357"
+        rpy="0 0 0" />
+      <mass
+        value="0.0564547441810421" />
+      <inertia
+        ixx="6.8579601402247E-05"
+        ixy="3.70475771580666E-11"
+        ixz="6.67840319699474E-10"
+        iyy="8.65277926510307E-05"
+        iyz="-1.31273057631923E-06"
+        izz="2.59150144946133E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportLidar_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/SuportLidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_SuportLidar"
+    type="fixed">
+    <origin
+      xyz="0.22761 -0.01976 -0.11283"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="SuportLidar_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Lidar_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/Lidar_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rubot_mecanum/meshes/Lidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_lidar"
+    type="fixed">
+    <origin
+      xyz="0.243440986234762 -0.019760369253584 0.00866735542305185"
+      rpy="1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="Lidar_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <!-- All static links get collapsed down to base_link in Gazebo, so that's
+       the one to apply the colour to (in Gazebo 5+). -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="R1_link">
+    <material>Gazebo/Black</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  <gazebo reference="L1_link">
+    <material>Gazebo/Black</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  <gazebo reference="R2_link">
+    <material>Gazebo/Black</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  <gazebo reference="L2_link">
+    <material>Gazebo/Black</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  <gazebo reference="SuportCentre1_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportCentre2_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="Coberta_Link">
+    <material>Gazebo/DarkGrey</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportR1_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportL1_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportR2_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportL2_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="MR1_Link">
+    <material>Gazebo/Grey</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="ML1_Link">
+    <material>Gazebo/Grey</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="MR2_Link">
+    <material>Gazebo/Grey</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="ML2_Link">
+    <material>Gazebo/Grey</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="SuportLidar_Link">
+    <material>Gazebo/White</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <gazebo reference="Lidar_Link">
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+  </gazebo>
+  <!-- Mecanum drive controller -->
+  <gazebo>
+    <plugin name="Mecanum_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>50.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+    <!-- 2D Camera controller -->
+    <gazebo reference="camera">
+      <sensor type="camera" name="camera1">
+        <update_rate>30.0</update_rate>
+        <camera name="front">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>rubot/camera1</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+  
+    <!-- Laser Distance Sensor YDLIDAR X4 controller-->
+    <gazebo reference="Lidar_Link">
+      <sensor type="ray" name="lds_lfcd_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>5</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>0.5</resolution>
+              <min_angle>0.0</min_angle>
+              <max_angle>6.28319</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.12</min>
+            <max>10</max>
+            <resolution>0.015</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise parameters based on published spec for YDLIDAR X4
+                is 1.5% at half range 4m (= 60mm, "+-160mm" accuracy at max. range 8m).
+                A mean of 0.0m and stddev of 0.020m will put 99.7% of samples
+                within 0.16m of the true reading. -->
+            <mean>0.0</mean>
+            <stddev>0.02</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+          <!-- topicName>/gopigo/scan</topicName -->
+          <topicName>scan</topicName>
+          <frameName>Lidar_Link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+</robot>

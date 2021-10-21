@@ -71,7 +71,7 @@ def take_action():
     elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] > d:
         state_description = 'case 2 - front'
         change_state(1)     # detecta front y giramos izquierda
-    #'''regions['front'] > d and'''
+    #'''regions['front'] > d and''' el margen del 0,2 es para evitar que entren en el caso y salga por variacion en la medida
     elif regions['front'] > (d+0.2) and  regions['fleft'] > d and regions['fright'] < d and regions['rright'] > d and regions['rleft'] > d:
         state_description = 'case 3 - fright'
         change_state(1)   # margen en front  detecta fright giras mas izquierda        #2 follow wall  

@@ -60,8 +60,8 @@ def take_action():
     msg = Twist()
     linear_x = 0
     angular_z = 0
-    #Prueba de mas que añadir ara ele gut 
-    
+   
+
 
     state_description = ''
 

@@ -126,16 +126,28 @@ def turn_left():
     return msg
 
 def turn_right():
+    global regions_
+    regions = regions_
+
     msg = Twist()
     msg.angular.z = -0.3
+    if regions['fright'] > 1.5:
+        msg.linear.z = -0.3
+    print("correcion")
     return msg
 
 
 def follow_the_wall():
     global regions_
+    regions = regions_
 
     msg = Twist()
     msg.linear.x = 0.1
+    print("follow wall")
+    if regions['rright'] > 1.2:
+        msg.linear.z = -0.3
+        print("correcion")
+
     
     return msg
 

@@ -23,17 +23,18 @@ state_dict_ = {
     0: 'find the wall',
     1: 'turn left',
     2: 'turn right',
-    3: 'follow the wall',
+    3: 'back',
+    4: 'follow the wall',
 }
 
 def clbk_laser(msg):
     global regions_
     regions_ = {
         'left':  min(min(msg.ranges[176:184]), 3),
-        'fleft': min(min(msg.ranges[1:175]), 3),
+        'fleft': min(min(msg.ranges[100:175]), 3),
         'front':  min(msg.ranges[0], 3),
-        'fright':  min(min(msg.ranges[545:719]), 3),
-        'right':   min(min(msg.ranges[536:544]), 3),
+        'fright':  min(min(msg.ranges[545:619]), 3),
+        'right':   min(min(msg.ranges[539:541]), 3),
         'rright':  min(min(msg.ranges[380:490]), 3),
         'rleft':  min(min(msg.ranges[230:340]), 3),
     }
@@ -46,6 +47,7 @@ def clbk_laser(msg):
 
     take_action()
 
+#test
 
 def change_state(state):
     global state_, state_dict_
@@ -65,67 +67,55 @@ def take_action():
 
     state_description = ''
 
-    d = 1
+    d = 1/1.5
+    dmin=0.65/1.5
 
-    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] > d:
+    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d: #and regions['rright'] > d and regions['rleft'] > d:
         state_description = 'case 1 - nothing'
-        change_state(0)     #caso inicial no detecta nada 
-    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 2 - front'
-        change_state(1)     # detecta front y giramos izquierda
-    #'''regions['front'] > d and''' el margen del 0,2 es para evitar que entren en el caso y salga por variacion en la medida
-    elif regions['front'] > (d+0.2) and  regions['fleft'] > d and regions['fright'] < d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 3 - fright'
-        change_state(1)   # margen en front  detecta fright giras mas izquierda        #2 follow wall  
-    elif regions['front'] > (d+0.2) and regions['fleft'] < d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 4 - fleft'
-        change_state(2)  # margen en front detecta izquierda gira derecha 
-    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] < d and regions['rright'] > d and regions['rleft'] > d: 
-        state_description = 'case 5 - front and fright'
-        change_state(1) #detecta front y front right 
-    elif regions['front'] < d and regions['fleft'] < d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 6 - front and fleft'
-        change_state(2) #detecta front y front left 
-    elif regions['front'] < d and regions['fleft'] < d and regions['fright'] < d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 7 - front and fleft and fright'
-        change_state(1) # detecta todos "encagado " --back pero no esta
-    elif regions['front'] > d and regions['fleft'] < d and regions['fright'] < d and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 8 - fleft and fright'
-        change_state(0) #detecta los laterales pero fron libre
-        
+        change_state(0)     #caso inicial no ha detectado nada aun 
 
-    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['rright'] < d and regions['rleft'] > d:
-        state_description = 'case 9 - rright'
-        change_state(2)
-    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['rright'] > d and regions['rleft'] < d:
-        state_description = 'case 10 - rfleft '
-        change_state(1)
-
-    elif regions['front'] > d and regions['left'] < d :
+    elif regions['front'] < dmin or regions['left'] < dmin or regions['right'] <dmin or regions['fleft'] < dmin or regions['fright'] <dmin:
             state_description = 'case 11 - fleft and fright'
-            change_state(3) #detecta lateral mas margen rleft
-    elif regions['front'] > d and regions['right'] < d :
-            state_description = 'case 12 - fleft and fright'
-            change_state(3) #detecta lateral mas margen rleft
+            change_state(3) #caso de seguridad para evitar colisiones
+
+    elif regions['front'] < d and regions['fright'] > d and regions['fleft'] > d:
+        state_description = 'case 2 - '
+        change_state(1) #detecta front --gira izquierda
+
+    elif regions['front'] < d and regions['fright'] < (d+15) and regions['fleft'] > d:
+        state_description = 'case 3 - '
+        change_state(1) #detecta front --gira izquierda
+
+    elif regions['fright'] < d and regions['right'] < d and regions['fleft'] > d:
+        state_description = 'case 2 - fleft and fright'
+        change_state(4) #detecta front --gira izquierda
+
+
+
+
+
+
+
 
     else:
         state_description = 'unknown case'
         rospy.loginfo(regions)
 
 
-def find_wall():
+def find_wall():        #0
     msg = Twist()
     msg.linear.x = 0.2
-    msg.angular.z = 0.01
+    #msg.angular.z = 0.01
+    print ("buscando wall")
     return msg
 
-
-def turn_left():
+def turn_left():        #1
     msg = Twist()
     msg.angular.z = 0.3
+    print ("girando izquierda")
     return msg
 
-def turn_right():
+def turn_right():       #2
     global regions_
     regions = regions_
 
@@ -136,13 +126,19 @@ def turn_right():
     print("correcion")
     return msg
 
+def back():             #3
+    msg = Twist()
+    msg.linear.x = -0.2
+    msg.angular.z = 0.4
+    print ("Back Back Back")
+    return msg
 
-def follow_the_wall():
+def follow_the_wall():      #4
     global regions_
     regions = regions_
 
     msg = Twist()
-    msg.linear.x = 0.1
+    msg.linear.x = 0.2
     print("follow wall")
     if regions['rright'] > 1.2:
         msg.linear.z = -0.3
@@ -167,8 +163,10 @@ def main():
         elif state_ == 1:
             msg = turn_left()
         elif state_ == 2:
-            msg = turn_right()    
+            msg = turn_right()
         elif state_ == 3:
+            msg = back()  
+        elif state_ == 4:
             msg = follow_the_wall()
             pass
         else:

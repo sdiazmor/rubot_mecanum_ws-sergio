@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 
+from sys import flags
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
@@ -9,6 +10,7 @@ from tf import transformations
 import math
 
 pub_ = None
+flag1=0
 regions_ = {
     'right': 0,
     'fright': 0,
@@ -69,27 +71,34 @@ def take_action():
 
     d = 1/1.5
     dmin=0.65/1.5
+    dmax=1
 
     if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d: #and regions['rright'] > d and regions['rleft'] > d:
         state_description = 'case 1 - nothing'
         change_state(0)     #caso inicial no ha detectado nada aun 
 
+    #elif regions['rleft'] > dmax :
+    #    state_description = 'case 11 - fleft and fright'
+    #    change_state(1) #caso de seguridad para evitar colisiones
+    #elif regions['rright'] > dmax :
+    #    state_description = 'case 11 - fleft and fright'
+    #    change_state(2) #caso de seguridad para evitar colisiones
+    
     elif regions['front'] < dmin or regions['left'] < dmin or regions['right'] <dmin or regions['fleft'] < dmin or regions['fright'] <dmin:
-            state_description = 'case 11 - fleft and fright'
+            state_description = 'case 2 - back to avoid colision'
             change_state(3) #caso de seguridad para evitar colisiones
 
     elif regions['front'] < d and regions['fright'] > d and regions['fleft'] > d:
-        state_description = 'case 2 - '
-        change_state(1) #detecta front --gira izquierda
+        state_description = 'case 3 - front detected '
+        change_state(1)     #detecta front --gira izquierda para orientarse
 
     elif regions['front'] < d and regions['fright'] < (d+15) and regions['fleft'] > d:
-        state_description = 'case 3 - '
-        change_state(1) #detecta front --gira izquierda
+        state_description = 'case 4 - front and front right detected'
+        change_state(1) #detecta front --gira izquierda +15
 
     elif regions['fright'] < d and regions['right'] < d and regions['fleft'] > d:
-        state_description = 'case 2 - fleft and fright'
-        change_state(4) #detecta front --gira izquierda
-
+        state_description = 'case 5 - following wall '
+        change_state(4) #detecta right i siguie la pared
 
 
 
@@ -103,15 +112,19 @@ def take_action():
 
 
 def find_wall():        #0
+    global flag1
     msg = Twist()
     msg.linear.x = 0.2
     #msg.angular.z = 0.01
     print ("buscando wall")
+    if flag1>0:
+        msg.angular.z=-0.5
+
     return msg
 
 def turn_left():        #1
     msg = Twist()
-    msg.angular.z = 0.3
+    msg.angular.z = 0.5
     print ("girando izquierda")
     return msg
 
@@ -120,7 +133,7 @@ def turn_right():       #2
     regions = regions_
 
     msg = Twist()
-    msg.angular.z = -0.3
+    msg.angular.z = -0.5
     if regions['fright'] > 1.5:
         msg.linear.z = -0.3
     print("correcion")
@@ -135,10 +148,12 @@ def back():             #3
 
 def follow_the_wall():      #4
     global regions_
+    global flag1
     regions = regions_
-
+    flag1=1
     msg = Twist()
     msg.linear.x = 0.2
+    msg.linear.z = 0.01
     print("follow wall")
     if regions['rright'] > 1.2:
         msg.linear.z = -0.3

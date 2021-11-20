@@ -36,7 +36,7 @@ def clbk_laser(msg):
         'fleft': min(min(msg.ranges[100:175]), 3),
         'front':  min(msg.ranges[0], 3),
         'fright':  min(min(msg.ranges[545:619]), 3),
-        'right':   min(min(msg.ranges[539:541]), 3),
+        'right':   min(min(msg.ranges[541:542]), 3),
         'rright':  min(min(msg.ranges[380:490]), 3),
         'rleft':  min(min(msg.ranges[230:340]), 3),
     }
@@ -60,6 +60,7 @@ def change_state(state):
 
 def take_action():
     global regions_
+    global flag1
     regions = regions_
     msg = Twist()
     linear_x = 0
@@ -69,37 +70,53 @@ def take_action():
 
     state_description = ''
 
-    d = 0.5     #distancia con la pared 
+    d = 0.6     #distancia con la pared 
     dmin=0.25   #distancia seguridad evitar colisiones
     dmax=1          # distancia max separacion
 
-    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d: #and regions['rright'] > d and regions['rleft'] > d:
-        state_description = 'case 1 - Finding wall'
-        change_state(0)     #caso inicial no ha detectado nada aun State 0 Findwall
+    if flag1==0:
+        if regions['front'] < dmin or regions['fleft'] > dmin or regions['fright'] > dmin:
+            state_description = 'case 0 - Avoid Colision'
+            change_state(3)     #Caso de seguridad para evitar colisiones al buscar la pared
 
-    
-    #elif regions['rleft'] > dmax :
-    #    state_description = 'case 11 - fleft and fright'
-    #    change_state(1) #caso de seguridad para evitar colisiones
-    #elif regions['rright'] > dmax :
-    #    state_description = 'case 11 - fleft and fright'
-    #    change_state(2) #caso de seguridad para evitar colisiones
-    
-    elif regions['front'] < dmin or regions['left'] < dmin or regions['right'] <dmin or regions['fleft'] < dmin or regions['fright'] <dmin:
-            state_description = 'case 2 - back to avoid colision'
+        if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d: #and regions['rright'] > d and regions['rleft'] > d:
+            state_description = 'case 1 - Finding wall'
+            change_state(0)     #caso inicial no ha detectado nada aun State 0 Findwall
+        elif regions['front'] < d or regions['fleft'] > d or regions['fright'] > d:
+            state_description = 'case 2 - Founded wall'
+            flag1=1
+            change_state(1)     #se ha detectado la pared empieza a orientarse el robot
+
+    else :   
+        #elif regions['rleft'] > dmax :
+        #    state_description = 'case 11 - fleft and fright'
+        #    change_state(1) #caso de seguridad para evitar colisiones
+        #elif regions['rright'] > dmax :
+        #    state_description = 'case 11 - fleft and fright'
+        #    change_state(2) #caso de seguridad para evitar colisiones
+        
+        if regions['front'] < dmin or regions['left'] < dmin or regions['right'] <dmin or regions['fleft'] < dmin or regions['fright'] <dmin:
+            state_description = 'case 3 - back to avoid colision'
             change_state(3) #caso de seguridad para evitar colisiones
 
-    elif regions['front'] < d and regions['fright'] > d and regions['fleft'] > d:
-        state_description = 'case 3 - front detected '
-        change_state(1)     #detecta front --gira izquierda para orientarse
+        elif regions['right'] > d and regions['fright'] > d :
+            state_description = 'case 3 - back to avoid colision'
+            change_state(2) #gira a la derecha buscando la pared
 
-    elif regions['front'] < d and regions['fright'] < (d+15) and regions['fleft'] > d:
-        state_description = 'case 4 - front and front right detected'
-        change_state(1) #detecta front --gira izquierda +15
+        elif regions['right'] > d:
+            state_description = 'case 4 - front detected orientation '
+            change_state(1)     #detecta front --gira izquierda para orientarse
+        elif regions['right']<d:
+            state_description = 'case 5 - wall detected following'
+            change_state(4)     #detecta front --gira izquierda para orientarse
 
-    elif regions['fright'] < d and regions['right'] < d and regions['fleft'] > d:
-        state_description = 'case 5 - following wall '
-        change_state(4) #detecta right i siguie la pared
+        #elif regions['front'] < d and regions['fright'] < (d+15) and regions['fleft'] > d:
+        #    state_description = 'case 4 - front and front right detected'
+        #    change_state(1) #detecta front --gira izquierda +15
+
+        #elif regions['fright'] < d and regions['right'] < d and regions['fleft'] > d:
+        #    state_description = 'case 5 - following wall '
+        #    change_state(4) #detecta right i siguie la pared
 
 
 
@@ -107,16 +124,16 @@ def take_action():
 
 
 
-    else:
-        state_description = 'unknown case'
-        rospy.loginfo(regions)
+        else:
+            state_description = 'unknown case'
+            rospy.loginfo(regions)
 
 
 def find_wall():        #0
     global flag1
     msg = Twist()
-    msg.linear.x = 0.5
-    #msg.angular.z = 0.01
+    msg.linear.x = 0.3
+    msg.angular.z = 0.1
     print ("buscando pared ")
     if flag1>0:
         msg.angular.z=-0.5
@@ -151,10 +168,10 @@ def follow_the_wall():      #4
     global regions_
     global flag1
     regions = regions_
-    flag1=1
+    #flag1=1
     msg = Twist()
     msg.linear.x = 0.2
-    msg.linear.z = 0.01
+    #msg.linear.z = 0.01
     print("follow wall")
     if regions['rright'] > 1.2:
         msg.linear.z = -0.3

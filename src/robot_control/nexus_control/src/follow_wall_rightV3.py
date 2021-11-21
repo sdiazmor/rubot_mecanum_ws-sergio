@@ -49,7 +49,6 @@ def clbk_laser(msg):
 
     take_action()
 
-#test
 
 def change_state(state):
     global state_, state_dict_

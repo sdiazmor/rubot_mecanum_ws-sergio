@@ -69,9 +69,9 @@ def take_action():
 
     state_description = ''
 
-    d = 1/1.5
-    dmin=0.65/1.5
-    dmax=1
+    d = 1/1.5       #distancia a la pared   
+    dmin=0.65/1.5   #distancia minima para evitar colisiones
+    dmax=1          
 
     if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d: #and regions['rright'] > d and regions['rleft'] > d:
         state_description = 'case 1 - nothing'
@@ -100,53 +100,47 @@ def take_action():
         state_description = 'case 5 - following wall '
         change_state(4) #detecta right i siguie la pared
 
-
-
-
-
-
-
     else:
         state_description = 'unknown case'
         rospy.loginfo(regions)
 
 
-def find_wall():        #0
+def find_wall():        #0 Buscar pared 
     global flag1
     msg = Twist()
     msg.linear.x = 0.2
     #msg.angular.z = 0.01
     print ("buscando wall")
-    if flag1>0:
+    if flag1>0:             #Buscando pared cuando ya la estaba siguiendo
         msg.angular.z=-0.5
 
     return msg
 
-def turn_left():        #1
+def turn_left():        #1  Giro hacia la izquierda
     msg = Twist()
     msg.angular.z = 0.5
     print ("girando izquierda")
     return msg
 
-def turn_right():       #2
+def turn_right():       #2  Giro hacia la derecha
     global regions_
     regions = regions_
-
     msg = Twist()
     msg.angular.z = -0.5
+    print ("girando derecha")
     if regions['fright'] > 1.5:
         msg.linear.z = -0.3
-    print("correcion")
+        print("correcion turn right")
     return msg
 
-def back():             #3
+def back():             #3  Marcha atras con orientacion
     msg = Twist()
     msg.linear.x = -0.2
     msg.angular.z = 0.4
-    print ("Back Back Back")
+    print ("Back ")
     return msg
 
-def follow_the_wall():      #4
+def follow_the_wall():      #4 Seguidor de pared con correcccion
     global regions_
     global flag1
     regions = regions_
@@ -157,9 +151,7 @@ def follow_the_wall():      #4
     print("follow wall")
     if regions['rright'] > 1.2:
         msg.linear.z = -0.3
-        print("correcion")
-
-    
+        print("correcion following")   
     return msg
 
 

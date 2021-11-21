@@ -1,5 +1,5 @@
 <launch>
-  <arg name="world" default="wall2.world"/> 
+  <arg name="world" default="roomsimulation.world"/> 
   <arg name="model" default="nexus.urdf" />
   <arg name="x_pos" default="0.0"/>
   <arg name="y_pos" default="0.0"/>
@@ -29,7 +29,7 @@
     <arg name="forward_speed" default="2" />
     <arg name="backward_speed" default="-2" />
     <arg name="rotation_speed" default="10" />
-  <node name="wall_follower" pkg="nexus_control" type="follow_wall_rightV3.py" output="screen" >
+  <node name="wall_follower" pkg="nexus_control" type="follow_wall_rightV2.py" output="screen" >
       <param name="distance_laser" value="$(arg distance_laser)"/>
       <param name="speed_factor" value="$(arg speed_factor)"/>
       <param name="forward_speed" value="$(arg forward_speed)"/>

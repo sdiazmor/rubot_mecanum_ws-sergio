@@ -57,5 +57,5 @@
           args="-d $(find nexus_slam)/rviz/gmapping.rviz"/>
   </group>
   
-  rosrun map_server map_saver -f /home/Sergio/primeraprueba
+  <!--rosrun map_server map_saver -f /home/Sergio/primeraprueba-->
 </launch>

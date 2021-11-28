@@ -1,15 +1,19 @@
 <launch>
   <!-- Robot model to match with that of Gazebo or the physical robot -->
-   <arg name="model" default="nexus.urdf" />
+    <arg name="model" default="nexus.urdf" />
 
-  <arg name="world" default="roomsimulation.world"/> 
-  <arg name="x_pos" default="0.0"/>
-  <arg name="y_pos" default="0.0"/>
-  <arg name="z_pos" default="0.0"/>
+    <arg name="world" default="roomsimulation.world"/> 
+    <arg name="x_pos" default="0.0"/>
+    <arg name="y_pos" default="0.0"/>
+    <arg name="z_pos" default="0.0"/>
   <!-- spawn world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
    <arg name="world_name" value="$(find nexus_control)/worlds/$(arg world)"/>
   </include>
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
+    args="-urdf -model rubot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
   <!-- More arguments -->
   <arg name="multi_robot_name" default=""/>
   <arg name="map_file" default="$(find nexus_slam)/maps/Testhabitacion_map.yaml"/>

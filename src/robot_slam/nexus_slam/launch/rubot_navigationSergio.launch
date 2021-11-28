@@ -1,7 +1,6 @@
 <launch>
   <!-- Robot model to match with that of Gazebo or the physical robot -->
     <arg name="model" default="nexus.urdf" />
-
     <arg name="world" default="roomsimulation.world"/> 
     <arg name="x_pos" default="0.0"/>
     <arg name="y_pos" default="0.0"/>
